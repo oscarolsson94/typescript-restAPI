@@ -1,13 +1,10 @@
-# Build a REST API with Node.js, Mongoose & TypeScript
+# REST API with Node.js, Mongoose & TypeScript
 
 Note: This repository includes the [postman collection for the finished API](postman_collection.json)
 
 #### Generate new keys: https://travistidwell.com/jsencrypt/demo/
 
 #### Base64 encode the keys: https://www.base64encode.org/
-
--   I'm getting a JWT malformed error: https://youtu.be/FzKrfwplips
--   Managing environment variables: https://youtu.be/gfyQzeBlLTI
 
 ## Technologies
 
@@ -16,6 +13,7 @@ Note: This repository includes the [postman collection for the finished API](pos
 -   TypeScript
 -   Express.js & Express.js middleware
 -   Zod validation
+-   JWT with refresh tokens
 
 ## Project structure
 
@@ -39,8 +37,6 @@ Note: This repository includes the [postman collection for the finished API](pos
     3. Read product
     4. Update product
     5. Delete product
-
-# Deployment
 
 ## What will we use
 
