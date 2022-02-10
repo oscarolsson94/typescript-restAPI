@@ -38,7 +38,7 @@ Note: This repository includes the [postman collection for the finished API](pos
     4. Update product
     5. Delete product
 
-## What will we use
+## Used for deployment
 
 -   Docker (image)
 -   docker-compose (container)
