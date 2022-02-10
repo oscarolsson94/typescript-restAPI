@@ -1,26 +1,26 @@
-import { Express, Request, Response } from 'express';
+import { Express, Request, Response } from "express";
 import {
     createProductHandler,
     getProductHandler,
     updateProductHandler,
     deleteProductHandler,
-} from './controller/product.controller';
+} from "./controller/product.controller";
 import {
     createUserSessionHandler,
     getUserSessionsHandler,
     deleteSessionHandler,
-} from './controller/session.controller';
-import { createUserHandler } from './controller/user.controller';
-import requireUser from './middleware/requireUser';
-import validateResource from './middleware/validateResource';
+} from "./controller/session.controller";
+import { createUserHandler } from "./controller/user.controller";
+import { requireUser } from "./middleware/requireUser";
+import { validateResource } from "./middleware/validateResource";
 import {
     createProductSchema,
     deleteProductSchema,
     getProductSchema,
     updateProductSchema,
-} from './schema/product.schema';
-import { createSessionSchema } from './schema/session.schema';
-import { createUserSchema } from './schema/user.schema';
+} from "./schema/product.schema";
+import { createSessionSchema } from "./schema/session.schema";
+import { createUserSchema } from "./schema/user.schema";
 
 function routes(app: Express) {
     /**
@@ -34,7 +34,7 @@ function routes(app: Express) {
      *       200:
      *         description: App is up and running
      */
-    app.get('/healthcheck', (req: Request, res: Response) =>
+    app.get("/healthcheck", (req: Request, res: Response) =>
         res.sendStatus(200)
     );
 
@@ -64,23 +64,23 @@ function routes(app: Express) {
      *        description: Bad request
      */
     app.post(
-        '/api/users',
+        "/api/users",
         validateResource(createUserSchema),
         createUserHandler
     );
 
     app.post(
-        '/api/sessions',
+        "/api/sessions",
         validateResource(createSessionSchema),
         createUserSessionHandler
     );
 
-    app.get('/api/sessions', requireUser, getUserSessionsHandler);
+    app.get("/api/sessions", requireUser, getUserSessionsHandler);
 
-    app.delete('/api/sessions', requireUser, deleteSessionHandler);
+    app.delete("/api/sessions", requireUser, deleteSessionHandler);
 
     app.post(
-        '/api/products',
+        "/api/products",
         [requireUser, validateResource(createProductSchema)],
         createProductHandler
     );
@@ -108,19 +108,19 @@ function routes(app: Express) {
      *         description: Product not found
      */
     app.put(
-        '/api/products/:productId',
+        "/api/products/:productId",
         [requireUser, validateResource(updateProductSchema)],
         updateProductHandler
     );
 
     app.get(
-        '/api/products/:productId',
+        "/api/products/:productId",
         validateResource(getProductSchema),
         getProductHandler
     );
 
     app.delete(
-        '/api/products/:productId',
+        "/api/products/:productId",
         [requireUser, validateResource(deleteProductSchema)],
         deleteProductHandler
     );

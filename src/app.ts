@@ -1,16 +1,18 @@
-import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
-dotenv.config();
-import config from 'config';
-import responseTime from 'response-time';
-import connect from './utils/connect';
-import logger from './utils/logger';
-import routes from './routes';
-import deserializeUser from './middleware/deserializeUser';
-import { restResponseTimeHistogram, startMetricsServer } from './utils/metrics';
-import swaggerDocs from './utils/swagger';
+import express, { Request, Response } from "express";
+import dotenv from "dotenv";
 
-const port = config.get<number>('port');
+import config from "config";
+import responseTime from "response-time";
+import { connect } from "./utils/connect";
+import { log } from "./utils/logger";
+import routes from "./routes";
+import { deserializeUser } from "./middleware/deserializeUser";
+import { restResponseTimeHistogram, startMetricsServer } from "./utils/metrics";
+import { swaggerDocs } from "./utils/swagger";
+
+dotenv.config();
+
+const port = config.get<number>("port");
 
 const app = express();
 
@@ -34,7 +36,7 @@ app.use(
 );
 
 app.listen(port, async () => {
-    logger.info(`App is running at http://localhost:${port}`);
+    log.info(`App is running at http://localhost:${port}`);
 
     await connect();
 
